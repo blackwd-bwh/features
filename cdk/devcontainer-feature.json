@@ -1,0 +1,10 @@
+{
+  "id": "cdk",
+  "version": "1.0.2",
+  "name": "AWS CDK",
+  "description": "Installs the AWS Cloud Development Kit (CDK) globally using npm.",
+  "dependsOn": {
+    "ghcr.io/blackwd-bwh/shared-dev-setup:latest": {},
+    "ghcr.io/blackwd-bwh/node22:latest": {}
+  }
+}
