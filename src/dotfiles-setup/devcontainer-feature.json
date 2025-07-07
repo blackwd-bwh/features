@@ -4,7 +4,8 @@
   "name": "Dotfiles Setup",
   "description": "Symlinks Zsh, Powerlevel10k, Git, and tmux config files from /root/code/dotfiles.",
   "installsAfter": [
-    "dotfiles-mounts"
+    "dotfiles-mounts",
+    "shared-dev-setup"
   ],
   "options": {}
 }
