@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "name": "Start SSH Agent",
   "description": "Starts ssh-agent and loads configured keys into the environment.",
+  "installsAfter": [
+    "dotfiles-mounts"
+  ],
   "options": {
     "KEYS": {
       "type": "array",
