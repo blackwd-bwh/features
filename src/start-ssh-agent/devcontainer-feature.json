@@ -1,6 +1,6 @@
 {
   "id": "start-ssh-agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Start SSH Agent",
   "description": "Starts ssh-agent and loads configured keys into the environment.",
   "installsAfter": [
