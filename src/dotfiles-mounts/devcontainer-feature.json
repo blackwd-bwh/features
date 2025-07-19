@@ -1,8 +1,10 @@
 {
   "id": "dotfiles-mounts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Dotfiles Mounts",
   "description": "Mount SSH, AWS, and dotfiles into container",
+  "documentationURL": "https://github.com/blackwd-bwh/devcontainer-features/tree/main/src/dotfiles-mounts",
+  "schemaVersion": 2,
   "mounts": [
     "source=${env:HOME}/.ssh/dotfiles_deploy_key,target=/root/.ssh/dotfiles_deploy_key,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.ssh,target=/mnt/ssh,type=bind,consistency=cached",
@@ -12,3 +14,4 @@
     "source=${env:HOME}/.dotfiles_token,target=/root/.dotfiles_token,type=bind,consistency=cached"
   ]
 }
+
