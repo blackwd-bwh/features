@@ -4,7 +4,7 @@ set -euo pipefail
 INFO_SCRIPT="/etc/profile.d/devcontainer-info.sh"
 LOG_FILE="/tmp/devcontainer-info.log"
 
-echo "📦 Installing devcontainer-info feature..."
+echo "🔧 Installing devcontainer-info feature..."
 
 # Write the info-check script to /etc/profile.d/
 cat << 'EOF' > "$INFO_SCRIPT"
@@ -16,19 +16,22 @@ LOG_FILE="/tmp/devcontainer-info.log"
   echo "🔍 Devcontainer Mount & Feature Sanity Check"
   echo "==========================================="
 
+  echo "👤 User: \$(whoami)"
+  echo "🏠 HOME: \$HOME"
+
   echo "📁 Mounted paths:"
   for path in \
-    "/root/.ssh/dotfiles_deploy_key" \
+    "\$HOME/.ssh/dotfiles_deploy_key" \
     "/mnt/ssh" \
-    "/root/.aws" \
-    "/root/.aws/sso/cache" \
-    "/root/code/dotfiles" \
-    "/root/.dotfiles_token"
+    "\$HOME/.aws" \
+    "\$HOME/.aws/sso/cache" \
+    "\$HOME/code/dotfiles" \
+    "\$HOME/.dotfiles_token"
   do
-    if [ -e "$path" ]; then
-      echo "✅ $path exists"
+    if [ -e "\$path" ]; then
+      echo "✅ \$path exists"
     else
-      echo "❌ $path missing"
+      echo "❌ \$path missing"
     fi
   done
 
@@ -43,7 +46,7 @@ LOG_FILE="/tmp/devcontainer-info.log"
 
   echo "✅ devcontainer-info.sh complete"
   echo ""
-} | tee -a "$LOG_FILE"
+} | tee -a "\$LOG_FILE"
 EOF
 
 # Make the script executable
