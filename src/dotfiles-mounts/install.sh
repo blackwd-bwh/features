@@ -6,7 +6,7 @@ LOG_FILE="/tmp/devcontainer-info.log"
 
 echo "🔧 Installing devcontainer-info feature..."
 
-# Write the info-check script to /etc/profile.d/
+# Write the info-check script
 cat << 'EOF' > "$INFO_SCRIPT"
 #!/bin/bash
 LOG_FILE="/tmp/devcontainer-info.log"
@@ -16,41 +16,40 @@ LOG_FILE="/tmp/devcontainer-info.log"
   echo "🔍 Devcontainer Mount & Feature Sanity Check"
   echo "==========================================="
 
-  echo "👤 User: \$(whoami)"
-  echo "🏠 HOME: \$HOME"
+  echo "👤 User: $(whoami)"
+  echo "🏠 HOME: $HOME"
 
   echo "📁 Mounted paths:"
   for path in \
-    "\$HOME/.ssh/dotfiles_deploy_key" \
+    "$HOME/.ssh/dotfiles_deploy_key" \
     "/mnt/ssh" \
-    "\$HOME/.aws" \
-    "\$HOME/.aws/sso/cache" \
-    "\$HOME/code/dotfiles" \
-    "\$HOME/.dotfiles_token"
+    "$HOME/.aws" \
+    "$HOME/.aws/sso/cache" \
+    "$HOME/code/dotfiles" \
+    "$HOME/.dotfiles_token"
   do
-    if [ -e "\$path" ]; then
-      echo "✅ \$path exists"
+    if [ -e "$path" ]; then
+      echo "✅ $path exists"
     else
-      echo "❌ \$path missing"
+      echo "❌ $path missing"
     fi
   done
 
   if command -v devcontainer &>/dev/null; then
     echo ""
-    echo "🔧 Devcontainer CLI detected — listing features:"
+    echo "🛠️  Devcontainer CLI detected — listing features:"
     devcontainer features list
   else
     echo ""
-    echo "⚠️  devcontainer CLI not available in this container."
+    echo "⚠️  Devcontainer CLI not available in this container."
   fi
 
   echo "✅ devcontainer-info.sh complete"
   echo ""
-} | tee -a "\$LOG_FILE"
+} | tee -a "$LOG_FILE"
 EOF
 
-# Make the script executable
 chmod +x "$INFO_SCRIPT"
 
-# Run it now (so it shows during build)
+# ✅ Run now so the output appears during build
 bash "$INFO_SCRIPT"
