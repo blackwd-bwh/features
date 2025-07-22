@@ -1,6 +1,6 @@
 {
   "id": "shared-dev-setup",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Shared Dev Setup",
   "description": "Installs core dev tools, dotfiles, bat, tree, and Powerlevel10k shell theme.",
   "options": {
@@ -8,6 +8,11 @@
       "type": "boolean",
       "default": false,
       "description": "Force reinstall of Oh My Zsh and Powerlevel10k even if already installed."
+    },
+    "installNerdFont": {
+      "type": "boolean",
+      "default": false,
+      "description": "Download and install MesloLGS Nerd Font."
     }
   }
 }
