@@ -28,6 +28,17 @@ fi
 # Install all packages
 apt-get install -y "${DEBIAN_PACKAGES[@]}"
 
+# MesloLGS Nerd Font (optional)
+if [[ "${_BUILD_ARG_INSTALL_NERD_FONT:-false}" == "true" ]]; then
+  echo "🔤 Installing MesloLGS Nerd Font..."
+  FONT_DIR="/usr/share/fonts/MesloLGS"
+  mkdir -p "$FONT_DIR"
+  curl -fsSL -o /tmp/Meslo.zip \
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Meslo.zip"
+  unzip -o /tmp/Meslo.zip -d "$FONT_DIR"
+  fc-cache -fv "$FONT_DIR"
+fi
+
 # Zsh + Powerlevel10k handling
 if [[ "${_BUILD_ARG_FORCE_REINSTALL_ZSH:-false}" == "true" ]]; then
   echo "🔁 Forcing reinstallation of Oh My Zsh and Powerlevel10k"
