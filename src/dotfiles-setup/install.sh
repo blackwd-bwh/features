@@ -11,13 +11,19 @@ mkdir -p /root
 
 # Ensure lines are not duplicated
 ZSHRC="/root/.zshrc"
+DOTFILES_ZSHRC="$DOTFILES_DIR/.zshrc"
 
-if ! grep -qF 'source /root/.zshrc' "$ZSHRC" 2>/dev/null; then
-  echo 'source /root/.zshrc' >> "$ZSHRC"
+SOURCE_LINE="source $DOTFILES_ZSHRC"
+P10K_LINE='[[ -r /root/.p10k.zsh ]] && source /root/.p10k.zsh'
+
+touch "$ZSHRC"
+
+if ! grep -qF "$SOURCE_LINE" "$ZSHRC" 2>/dev/null; then
+  echo "$SOURCE_LINE" >> "$ZSHRC"
 fi
 
-if ! grep -qF 'source /root/.p10k.zsh' "$ZSHRC" 2>/dev/null; then
-  echo '[[ -r /root/.p10k.zsh ]] && source /root/.p10k.zsh' >> "$ZSHRC"
+if ! grep -qF "$P10K_LINE" "$ZSHRC" 2>/dev/null; then
+  echo "$P10K_LINE" >> "$ZSHRC"
 fi
 
 # Symlink configs safely
