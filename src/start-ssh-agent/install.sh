@@ -63,4 +63,15 @@ echo "✅ SSH agent profile script created at $AGENT_ENV"
 
 # 4. SSH config alias (dotfiles host)
 if ! grep -q "Host $DOTFILES_HOST" "$CONFIG_PATH" 2>/dev/null; then
-  echo "🔧
+  echo "🔧 Adding SSH config for $DOTFILES_HOST"
+  cat <<EOC >> "$CONFIG_PATH"
+Host $DOTFILES_HOST
+  HostName $DOTFILES_HOSTNAME
+  Port $DOTFILES_PORT
+EOC
+fi
+
+if ! ssh-keygen -F "$DOTFILES_HOSTNAME" -f "$KNOWN_HOSTS" >/dev/null 2>&1; then
+  echo "🔑 Updating known_hosts for $DOTFILES_HOSTNAME"
+  ssh-keyscan -p "$DOTFILES_PORT" "$DOTFILES_HOSTNAME" >> "$KNOWN_HOSTS"
+fi
