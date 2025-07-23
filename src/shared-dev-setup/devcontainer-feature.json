@@ -1,8 +1,8 @@
 {
   "id": "shared-dev-setup",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "name": "Shared Dev Setup",
-  "description": "Installs core dev tools, dotfiles, bat, tree, and Powerlevel10k shell theme.",
+  "description": "Installs tmux, zsh, fonts-powerline, git, sudo, tree, bat, dotfiles, and the Powerlevel10k shell theme.",
   "options": {
     "forceReinstallZsh": {
       "type": "boolean",

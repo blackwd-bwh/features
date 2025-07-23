@@ -3,14 +3,18 @@ set -euo pipefail
 
 echo "=== shared-dev-setup feature running ==="
 
-# Install requested Debian packages
+# Default packages always installed
+DEFAULT_PACKAGES=(tmux zsh fonts-powerline git sudo tree bat)
+
+# Combine defaults with any additional packages provided via DEBIAN_PACKAGES
+PACKAGES=("${DEFAULT_PACKAGES[@]}")
 if [ -n "${DEBIAN_PACKAGES:-}" ]; then
-  echo "📦 Installing APT packages: ${DEBIAN_PACKAGES[*]}"
-  apt-get update
-  apt-get install -y "${DEBIAN_PACKAGES[@]}"
-else
-  echo "ℹ️  No DEBIAN_PACKAGES specified"
+  PACKAGES+=("${DEBIAN_PACKAGES[@]}")
 fi
+
+echo "📦 Installing APT packages: ${PACKAGES[*]}"
+apt-get update
+apt-get install -y "${PACKAGES[@]}"
 
 # Zsh + Powerlevel10k reinstallation trigger
 if [[ "${FORCEREINSTALLZSH:-false}" == "true" ]]; then
