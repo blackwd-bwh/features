@@ -13,7 +13,7 @@ else
 fi
 
 # Zsh + Powerlevel10k reinstallation trigger
-if [[ "${FORCE_REINSTALL_ZSH:-false}" == "true" ]]; then
+if [[ "${FORCEREINSTALLZSH:-false}" == "true" ]]; then
   echo "🔁 Forcing reinstallation of Oh My Zsh and Powerlevel10k"
   rm -rf "$HOME/.oh-my-zsh" "$HOME/.zshrc" "$HOME/.p10k.zsh"
 fi
@@ -38,6 +38,12 @@ fi
 # Install MesloLGS Nerd Font if enabled
 if [[ "${INSTALLNERDFONT:-false}" == "true" ]]; then
   echo "🔤 Installing MesloLGS Nerd Font..."
+
+  if ! command -v fc-cache >/dev/null 2>&1; then
+    echo "📦 Installing fontconfig for fc-cache..."
+    apt-get update && apt-get install -y fontconfig
+  fi
+
   FONT_DIR="/usr/share/fonts/MesloLGS"
   mkdir -p "$FONT_DIR"
   TEMP_ZIP="/tmp/meslo.zip"
