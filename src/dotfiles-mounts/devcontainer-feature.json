@@ -1,6 +1,6 @@
 {
   "id": "dotfiles-mounts",
-  "version": "1.0.5",
+  "version": "2",
   "name": "Dotfiles Mounts",
   "description": "Mount SSH, AWS, and dotfiles into container",
   "documentationURL": "https://github.com/blackwd-bwh/devcontainer-features/tree/main/src/dotfiles-mounts",
