@@ -71,6 +71,19 @@ else
   echo "✅ .p10k.zsh sourcing already present in .zshrc"
 fi
 
+# Add tmux auto-start snippet if tmux is available and not already configured
+TMUX_CHECK_LINE="tmux new-session -A -s dev"
+if command -v tmux >/dev/null 2>&1 && ! grep -Fq "$TMUX_CHECK_LINE" "$ZSHRC"; then
+  echo "💡 Adding tmux auto-start to .zshrc"
+  cat <<'EOF' >> "$ZSHRC"
+if command -v tmux >/dev/null 2>&1 && [ -z "$TMUX" ]; then
+  tmux new-session -A -s dev
+fi
+EOF
+else
+  echo "✅ tmux auto-start already configured or tmux missing"
+fi
+
 # Clean up APT cache
 echo "🧼 Cleaning up apt cache..."
 apt-get clean && rm -rf /var/lib/apt/lists/*

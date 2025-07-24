@@ -1,6 +1,6 @@
 {
   "id": "shared-dev-setup",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "Shared Dev Setup",
   "description": "Installs tmux, zsh, fonts-powerline, git, sudo, tree, bat, dotfiles, and the Powerlevel10k shell theme.",
   "options": {
